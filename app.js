@@ -26,6 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
 //middleware
+app.use("/uploads", express.static("uploads"));
 app.use(localsMiddleware);
 
 //router
