@@ -4,20 +4,26 @@ import {
     getUpload,
     postUpload,
     videoDetail,
-    editVideo,
+    getEditVideo,
+    postEditVideo,
     deleteVideo
   } from "../controllers/videoController";
 import {uploadVideo} from "../middlewares";
 
 const videoRouter = express.Router();
 
+//uploac
 videoRouter.get(routes.upload, getUpload);
 videoRouter.post(routes.upload, uploadVideo, postUpload);
 
+//video detail
 videoRouter.get(routes.videoDetail(), videoDetail);
 
-videoRouter.get(routes.editVideo, editVideo);
+//edit video
+videoRouter.get(routes.editVideo(), getEditVideo);
+videoRouter.post(routes.editVideo(), postEditVideo);
 
-videoRouter.get(routes.deleteVideo, deleteVideo);
+//delete
+videoRouter.get(routes.deleteVideo(), deleteVideo);
 
 export default videoRouter;
