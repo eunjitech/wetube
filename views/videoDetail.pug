@@ -6,5 +6,10 @@ block content
     .video__info 
         a(href=routes.editVideo(video.id)) Edit Video 
         h5.video__title=video.title
-        span.video__views=video.views
+        span.video__views=`${video.views} 회`
         p.video__description=video.description
+    .video__comments 
+        if video.comments.length === 0 || 1
+            span.video__comment-number #{video.comments.length} comment 
+        else 
+            span.video__comment-number #{video.comments.length} comments
