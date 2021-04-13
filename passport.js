@@ -1,19 +1,15 @@
 import passport from "passport";
 import GithubStrategy from "passport-github";
+import FacebookStrategy from "passport-facebook";
 import User from "./models/User";
-import { githubLoginCallback } from "./controllers/userController";
+import {
+  githubLoginCallback,
+  facebookLoginCallback
+} from "./controllers/userController";
 import routes from "./routes";
 
 // passport 설정(Strategy)
 passport.use(User.createStrategy());
-
-passport.serializeUser((user, done) => {
-  done(null, user);
-});
-
-passport.deserializeUser((user, done) => {
-  done(null, user);
-});
 
 // Github Strategy
 passport.use(
@@ -23,3 +19,25 @@ passport.use(
     redirect_uri: `http://localhost:4000${routes.githubLoginCallback}`
   }, githubLoginCallback)
 );
+
+// Facebook Strategy
+passport.use(
+  new FacebookStrategy(
+    {
+      clientID: process.env.FB_ID,
+      clientSecret: process.env.FB_SECRET,
+      callbackURL: `https://b7a116725815.ngrok.io${routes.facebookCallback}`,
+      profileFields: ["id", "displayName", "photos", "email"],
+      scope: ["public_profile", "email"]
+    },
+    facebookLoginCallback
+  )
+);
+
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+
+passport.deserializeUser((user, done) => {
+  done(null, user);
+});
