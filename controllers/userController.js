@@ -97,6 +97,38 @@ export const postFacebookLogin = (req, res) => {
   res.redirect(routes.home);
 };
 
+export const googleLogin = passport.authenticate("google");
+
+export const googleLoginCallback = async (_, __, profile, cb) => {
+  const {
+    _json: {
+      sub: id, name, email, picture
+    }
+  } = profile;
+  try {
+    const user = await User.findOne({ email });
+    if (user) {
+      user.googleId = id;
+      user.avatarUrl = picture;
+      user.save();
+      return cb(null, user);
+    }
+    const newUser = await User.create({
+      email,
+      name,
+      googleId: id,
+      avatarUrl: picture
+    });
+    return cb(null, newUser);
+  } catch (error) {
+    return cb(error);
+  }
+};
+
+export const postGoogleLogin = (req, res) => {
+  res.redirect(routes.home);
+};
+
 export const logout = (req, res) => {
   req.logout();
   res.redirect(routes.home);
@@ -105,6 +137,10 @@ export const logout = (req, res) => {
 export const getMe = (req, res) => {
   res.render("userDetail", { pageTitle: "User Detail", user: req.user });
 };
+
+export const editProfile = (req, res) => res.render("editProfile", { pageTitle: "Edit Profile" });
+
+export const changePassword = (req, res) => res.render("changePassword", { pageTitle: "Change Password" });
 
 export const userDetail = async (req, res) => {
   const {
@@ -117,7 +153,3 @@ export const userDetail = async (req, res) => {
     res.redirect(routes.home);
   }
 };
-
-export const editProfile = (req, res) => res.render("editProfile", { pageTitle: "Edit Profile" });
-
-export const changePassword = (req, res) => res.render("changePassword", { pageTitle: "Change Password" });

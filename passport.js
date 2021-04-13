@@ -1,10 +1,12 @@
 import passport from "passport";
 import GithubStrategy from "passport-github";
 import FacebookStrategy from "passport-facebook";
+import GoogleStrategy from "passport-google-oauth20";
 import User from "./models/User";
 import {
   githubLoginCallback,
-  facebookLoginCallback
+  facebookLoginCallback,
+  googleLoginCallback
 } from "./controllers/userController";
 import routes from "./routes";
 
@@ -31,6 +33,20 @@ passport.use(
       scope: ["public_profile", "email"]
     },
     facebookLoginCallback
+  )
+);
+
+// Google Strategy
+
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.GG_ID,
+      clientSecret: process.env.GG_SECRET,
+      callbackURL: "http://localhost:4000/auth/google/callback",
+      scope: ['profile', 'email']
+    },
+    googleLoginCallback
   )
 );
 

@@ -3,8 +3,8 @@ import passport from "passport";
 import routes from "../routes";
 import { home, search } from "../controllers/videoController";
 import {
-  getJoin, postJoin, getLogin, postLogin, logout, githubLogin, postGitLogin, getMe, facebookLogin,
-  postFacebookLogin
+  getJoin, postJoin, getLogin, postLogin, githubLogin, postGitLogin, facebookLogin,
+  postFacebookLogin, googleLogin, postGoogleLogin, logout, getMe
 } from "../controllers/userController";
 import { onlyPublic, onlyPrivate } from "../middlewares";
 
@@ -31,6 +31,11 @@ globalRouter.get(routes.me, getMe);
 globalRouter.get(routes.facebook, facebookLogin);
 globalRouter.get(
   routes.facebookCallback, passport.authenticate("facebook", { failureRedirect: "/login" }), postFacebookLogin
+);
+
+globalRouter.get(routes.google, googleLogin);
+globalRouter.get(
+  routes.googleCallback, passport.authenticate("google", { failureRedirect: "/login", accessType: 'offline' }), postGoogleLogin
 );
 
 export default globalRouter;

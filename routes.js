@@ -29,6 +29,10 @@ const GITHUB_CALLBACK = '/auth/github/callback';
 const FB = "/auth/facebook";
 const FB_CALLBACK = "/auth/facebook/callback";
 
+// Google
+const GG = "/auth/google";
+const GG_CALLBACK = "/auth/google/callback";
+
 const routes = {
   home: HOME,
   join: JOIN,
@@ -68,7 +72,9 @@ const routes = {
   githubCallback: GITHUB_CALLBACK,
   me: ME,
   facebook: FB,
-  facebookCallback: FB_CALLBACK
+  facebookCallback: FB_CALLBACK,
+  google: GG,
+  googleCallback: GG_CALLBACK
 };
 
 export default routes;
