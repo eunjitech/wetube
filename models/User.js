@@ -11,19 +11,19 @@ const UserSchema = new mongoose.Schema({
   comments: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Comment"
-    }
+      ref: "Comment",
+    },
   ],
   videos: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Video"
-    }
-  ]
+      ref: "Video",
+    },
+  ],
 });
 
 UserSchema.plugin(passportLocalMongoose, { usernameField: "email" }); // 설정객체 설정
 
-const model = mongoose.model('User', UserSchema);
+const model = mongoose.model("User", UserSchema);
 
 export default model;
