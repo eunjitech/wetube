@@ -1,9 +1,9 @@
-import "core-js";
 import express from "express";
 import morgan from "morgan";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import passport from "passport";
+import path from "path";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 import { localsMiddleware } from "./middlewares";
@@ -24,14 +24,15 @@ app.use(
   })
 );
 app.set("view engine", "pug"); // 뷰엔진을 퍼그로 바꿈
+app.set("views", path.join(__dirname, "views"));
+app.use("/static", express.static(path.join(__dirname, "static")));
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
 // middleware
-app.use("/uploads", express.static("uploads"));
-app.use("/static", express.static("static"));
+//app.use("/uploads", express.static(path.join(__dirname, "uploads"))); s3로 대체
 app.use(
   session({
     secret: process.env.COOKIE_SECRET,
