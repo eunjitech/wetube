@@ -6,7 +6,7 @@ import User from "./models/User";
 import {
   githubLoginCallback,
   facebookLoginCallback,
-  googleLoginCallback
+  googleLoginCallback,
 } from "./controllers/userController";
 import routes from "./routes";
 
@@ -15,11 +15,14 @@ passport.use(User.createStrategy());
 
 // Github Strategy
 passport.use(
-  new GithubStrategy({
-    clientID: process.env.GH_ID,
-    clientSecret: process.env.GH_SECRET,
-    redirect_uri: `http://localhost:4000${routes.githubLoginCallback}`
-  }, githubLoginCallback)
+  new GithubStrategy(
+    {
+      clientID: process.env.GH_ID,
+      clientSecret: process.env.GH_SECRET,
+      redirect_uri: `http://localhost:4000${routes.githubLoginCallback}`,
+    },
+    githubLoginCallback
+  )
 );
 
 // Facebook Strategy
@@ -30,7 +33,7 @@ passport.use(
       clientSecret: process.env.FB_SECRET,
       callbackURL: `https://b7a116725815.ngrok.io${routes.facebookCallback}`,
       profileFields: ["id", "displayName", "photos", "email"],
-      scope: ["public_profile", "email"]
+      scope: ["public_profile", "email"],
     },
     facebookLoginCallback
   )
@@ -44,7 +47,7 @@ passport.use(
       clientID: process.env.GG_ID,
       clientSecret: process.env.GG_SECRET,
       callbackURL: "http://localhost:4000/auth/google/callback",
-      scope: ['profile', 'email']
+      scope: ["profile", "email"],
     },
     googleLoginCallback
   )
