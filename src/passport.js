@@ -18,7 +18,7 @@ passport.use(
   new GithubStrategy(
     {
       clientID: process.env.GH_ID,
-      clientSecret: process.env.GH_SECRET,
+      clientSecret: process.env.GG_SECRET,
       redirect_uri: `http://localhost:4000${routes.githubLoginCallback}`,
     },
     githubLoginCallback
