@@ -5,7 +5,7 @@ import {
   getEditProfile,
   postEditProfile,
   getChangePassword,
-  postChangePassword
+  postChangePassword,
 } from "../controllers/userController";
 import { onlyPrivate, uploadAvatar } from "../middlewares";
 

@@ -19,7 +19,9 @@ passport.use(
     {
       clientID: process.env.GH_ID,
       clientSecret: process.env.GH_SECRET,
-      redirect_uri: `http://localhost:4000${routes.githubLoginCallback}`,
+      redirect_uri: process.env.PRODUCTION
+        ? `https://blooming-dusk-92491.herokuapp.com${routes.githubCallback}`
+        : `http://localhost:4000${routes.githubCallback}`,
     },
     githubLoginCallback
   )
@@ -46,7 +48,7 @@ passport.use(
     {
       clientID: process.env.GG_ID,
       clientSecret: process.env.GG_SECRET,
-      callbackURL: "http://localhost:4000/auth/google/callback",
+      callbackURL: `http://localhost:4000${routes.googleCallback}`,
     },
     googleLoginCallback
   )
