@@ -12,12 +12,17 @@
     "build": "npm run build:server && npm run build:assets && npm run copyAll",
     "prebuild": "rm -rf build",
     "ngrok": "ngrok http 4000",
-    "start": "PRODUCTION=true node build/init.js"
+    "start": "PRODUCTION=true node build/init.js",
+    "prestart": "npm run build"
   },
   "author": "leeeunji",
   "license": "ISC",
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
+    "@babel/cli": "^7.13.10",
+    "@babel/core": "^7.13.10",
+    "@babel/node": "^7.13.12",
+    "@babel/preset-env": "^7.13.12",
     "autoprefixer": "^10.2.5",
     "aws-sdk": "^2.888.0",
     "axios": "^0.21.1",
@@ -47,10 +52,6 @@
     "sass-loader": "^11.0.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.13.10",
-    "@babel/core": "^7.13.10",
-    "@babel/node": "^7.13.12",
-    "@babel/preset-env": "^7.13.12",
     "eslint": "^7.23.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.1.0",
