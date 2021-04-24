@@ -33,7 +33,9 @@ passport.use(
     {
       clientID: process.env.FB_ID,
       clientSecret: process.env.FB_SECRET,
-      callbackURL: `https://b7a116725815.ngrok.io${routes.facebookCallback}`,
+      callbackURL: process.env.PRODUCTION
+        ? `https://blooming-dusk-92491.herokuapp.com${routes.facebookCallback}`
+        : `https://b7a116725815.ngrok.io${routes.facebookCallback}`,
       profileFields: ["id", "displayName", "photos", "email"],
       scope: ["public_profile", "email"],
     },
@@ -48,7 +50,9 @@ passport.use(
     {
       clientID: process.env.GG_ID,
       clientSecret: process.env.GG_SECRET,
-      callbackURL: `http://localhost:4000${routes.googleCallback}`,
+      callbackURL: process.env.PRODUCTION
+        ? `https://blooming-dusk-92491.herokuapp.com${rroutes.googleCallback}`
+        : `http://localhost:4000${routes.googleCallback}`,
       scope: ["profile"],
     },
     googleLoginCallback
