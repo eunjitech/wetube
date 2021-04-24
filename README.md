@@ -10,7 +10,7 @@ Cloning Youtube with Vanilla JS and NodeJS
 
 ## File tree
 
-<textarea>
+<pre>
 ├── app.js
 ├── assets
 │   ├── js
@@ -80,7 +80,7 @@ Cloning Youtube with Vanilla JS and NodeJS
 │   ├── userDetail.pug
 │   └── videoDetail.pug
 └── webpack.config.js
-</textarea>
+</pre>
 
 ## Pages
 
