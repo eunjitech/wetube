@@ -1,6 +1,6 @@
 import express from "express";
 import morgan from "morgan";
-import helmet from "helmet";
+
 import cookieParser from "cookie-parser";
 import passport from "passport";
 import path from "path";
@@ -18,11 +18,6 @@ import "./passport";
 const app = express();
 
 // middleware
-app.use(
-  helmet({
-    contentSecurityPolicy: false,
-  })
-);
 app.set("view engine", "pug"); // 뷰엔진을 퍼그로 바꿈
 app.set("views", path.join(__dirname, "views"));
 app.use("/static", express.static(path.join(__dirname, "static")));
@@ -38,7 +33,7 @@ app.use(
     secret: process.env.COOKIE_SECRET,
     resave: true,
     saveUninitialized: false,
-    store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
+    store: MongoStore.create({ mongoUrl: process.env.MONGO_URL_PROD }),
   })
 );
 app.use(passport.initialize());
