@@ -1,6 +1,7 @@
 # Wetube
 
-Cloning Youtube with Vanilla JS and NodeJS
+Cloning Youtube with Vanilla JS and NodeJS <br/>
+❗️PC 사용을 권장합니다
 
 ## Preview
 
