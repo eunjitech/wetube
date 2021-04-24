@@ -51,7 +51,7 @@ passport.use(
       clientID: process.env.GG_ID,
       clientSecret: process.env.GG_SECRET,
       callbackURL: process.env.PRODUCTION
-        ? `https://blooming-dusk-92491.herokuapp.com${rroutes.googleCallback}`
+        ? `https://blooming-dusk-92491.herokuapp.com${routes.googleCallback}`
         : `http://localhost:4000${routes.googleCallback}`,
       scope: ["profile"],
     },
