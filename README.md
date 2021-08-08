@@ -5,7 +5,7 @@ Cloning Youtube with Vanilla JS and NodeJS <br/>
 
 ## Preview
 
-<img src="src/preview.png"  width="400"><br>
+<img src="src/preview.png"  width="700"><br>
 
 👉 [사이트 방문하기](https://blooming-dusk-92491.herokuapp.com/)
 
